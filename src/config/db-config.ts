@@ -43,10 +43,5 @@ export const connectDB = async (): Promise<AppPrismaClient> => {
         log('Error connecting to the database:', error);
         throw error;
     }
-
-
-
-
-    
     return prisma;
 };
