@@ -1,8 +1,9 @@
-import { HomeView } from './home.ts';
+import { HomeView } from "./home.ts"
 
 test('HomeView', async () => {
-    expect(typeof (await HomeView.render())).toBe('string');
-});
+    expect(typeof await HomeView.render()).toBe('string')
+})
 
-test('HomeView' async () => {
-    expect(typeof (await HomeView.render(false))).toBe('string');
+test('HomeView', async () => {
+    expect(typeof await HomeView.render(false)).toBe('string')
+})

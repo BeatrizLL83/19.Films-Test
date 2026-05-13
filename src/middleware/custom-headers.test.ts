@@ -1,29 +1,23 @@
-import{ Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 
-import { customHeaders } from './custom-headers';
-}
-
+import { customHeaders } from "./custom-headers.ts"
 
 describe('Given the middleware factory customHeaders', () => {
-    describe('When the middleware is created and call', () => {
+    describe('When the middleware is created and called', () => {
         test('Then next will be called without arguments', () => {
             // Arrange
-
-            const req = {} as Request;
+            const req = {} as Request
             const res = {
-                setHeader: vi.fn(),
+                setHeader: vi.fn()
             } as unknown as Response
-            const next: NextFunction = vi.fn() => {};
+            const next: NextFunction = vi.fn()
 
-            const middleware = customHeaders('test');
-
+            const middleware = customHeaders('test')
             // Act
-            middleware(req, res, next);
-
-
-            //Assert
-            expect(res.setHeader).toHaveBeenCalledWith()
-            expect(next).toHaveBeenCalledWith();
-        });
-    });
-});
+            middleware(req, res, next)
+            // Assert
+            expect(res.setHeader).toHaveBeenCalled()
+            expect(next).toHaveBeenCalledWith()
+        })
+    })
+})

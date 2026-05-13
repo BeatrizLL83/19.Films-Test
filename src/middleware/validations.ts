@@ -8,9 +8,11 @@ const log = debug(`${env.PROJECT_NAME}:middleware:validations`);
 
 log('Loading validation middleware...');
 
-export const validateParams = ( schema: ZodObject = z.strictObject({
+export const validateParams = (
+    schema: ZodObject = z.strictObject({
         id: z.coerce.number().int().positive(),
-    })) => {
+    }),
+) => {
     return (req: Request, res: Response, next: NextFunction) => {
         log('Validating request params...');
         try {
@@ -18,7 +20,10 @@ export const validateParams = ( schema: ZodObject = z.strictObject({
             return next();
         } catch (error) {
             const paramsText = JSON.stringify(req.params);
-            const paramsError = new BadRequestError(`Invalid parameters: ${paramsText}`, {cause: error});
+            const paramsError = new BadRequestError(
+                `Invalid parameters: ${paramsText}`,
+                { cause: error },
+            );
             return next(paramsError);
         }
     };
@@ -34,7 +39,9 @@ export const validateBody = (schema: ZodObject) => {
             req.body = validationResult;
             return next();
         } catch (error) {
-            const bodyError = new BadRequestError('Invalid request body', {cause: error});
+            const bodyError = new BadRequestError('Invalid request body', {
+                cause: error,
+            });
             return next(bodyError);
         }
     };
